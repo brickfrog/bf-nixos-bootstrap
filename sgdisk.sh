@@ -12,7 +12,7 @@ partprobe /dev/sda
 
 mkfs.vfat -n "BOOT" /dev/sda1
 mkswap /dev/sda2 --label "SWAP"
-mkfs.ext4 -n "DATA" /dev/sda3
+mkfs.ext4 /dev/sda3 -l "DATA"
 
 fdisk -l /dev/sda
 
