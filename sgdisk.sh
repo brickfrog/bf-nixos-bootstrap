@@ -19,7 +19,6 @@ fdisk -l /dev/sda
 # mount & mkdir
 
 mkdir /mnt/boot
-mkdir /mnt/os_data
 
 mount LABEL=DATA /mnt
 mount LABEL=BOOT /mnt/boot
