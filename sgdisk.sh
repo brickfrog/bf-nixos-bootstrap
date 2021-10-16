@@ -25,3 +25,8 @@ mount LABEL=DATA /mnt
 mount LABEL=BOOT /mnt/boot
 
 swapon /dev/sda2
+
+# generate config for hardware
+nixos-generate-config --root /mnt
+
+mv ./nixos/configuration.nix /mnt/etc/nixos
