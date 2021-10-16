@@ -5,3 +5,5 @@ eventually want to add home-manager and theming and such and such
 
 Source(s) I found useful:
 * https://stianlagstad.no/2020/06/how-to-install-nixos-on-a-dell-precision-5530/
+* https://matthewrhone.dev/nixos-package-guide
+* https://github.com/thomashoneyman/.dotfiles

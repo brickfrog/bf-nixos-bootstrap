@@ -14,11 +14,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "nixos"; # Define your hostname.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/New York";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -31,14 +31,15 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+     font = "Lat2-Terminus16";
+     keyMap = "us";
+   };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.layout = "us";
 
 
   # Enable the Plasma 5 Desktop Environment.
@@ -54,8 +55,12 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+   sound.enable = true;
+     hardware = {
+     pulseaudio = {
+       enable = true;
+       package = pkgs.pulseaudioFull;
+    };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -63,7 +68,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.justin = {
      isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     group= "users";
+     extraGroups = [ "wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+     createHome = true;
+     uid = 1000;
    };
 
   # List packages installed in system profile. To search, run:
@@ -73,6 +81,10 @@
      wget
      git
      firefox
+     lsof
+     networkmanagerapplet
+     powertop
+     light
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -86,13 +98,28 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services = {
+    openssh.enable = true;
+
+    # automatically change xrandr profiles on display change
+    autorandr.enable = true;
+
+    # bluetooth control
+    blueman.enable = true;
+
+    # monitor and manage CPU temp, throttling as needed
+    thermald.enable = true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+    
+    nixpkgs.config = {
+      allowUnfree = true;
+    };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

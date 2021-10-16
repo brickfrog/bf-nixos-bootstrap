@@ -27,4 +27,4 @@ fdisk -l /dev/sda
 # generate config for hardware
 nixos-generate-config --root /mnt
 
-mv ./nixos/configuration.nix /mnt/etc/nixos
+mv ./configuration.nix /mnt/etc/nixos
