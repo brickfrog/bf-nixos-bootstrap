@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # format /dev/sda as GPT, GUID Partition Table
 sgdisk - Z /dev/sda
 
