@@ -14,16 +14,15 @@ mkfs.vfat -n "BOOT" /dev/sda1
 mkswap /dev/sda2 --label "SWAP"
 mkfs.ext4 /dev/sda3 -L "DATA"
 
-fdisk -l /dev/sda
-
-# mount & mkdir
-
-mkdir /mnt/boot
+# mounting
 
 mount LABEL=DATA /mnt
-mount LABEL=BOOT /mnt/boot
 
+mkdir /mnt/boot
+mount LABEL=BOOT /mnt/boot
 swapon /dev/sda2
+
+fdisk -l /dev/sda
 
 # generate config for hardware
 nixos-generate-config --root /mnt
