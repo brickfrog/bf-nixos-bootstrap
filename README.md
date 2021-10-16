@@ -1,5 +1,5 @@
 # bf-nixos-bootstrap
-utility scripts n' such for installing nixos - should work from gnome/plasma livedisk, I don't believe the mininmal has git preinstalled
+utility scripts n' such for installing nixos - should work from gnome/plasma livedisk with a bare drive, I don't believe the mininmal has git preinstalled
 
 eventually want to add home-manager and theming and such and such
 
